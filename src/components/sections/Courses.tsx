@@ -1,0 +1,83 @@
+import { useRef, useState } from 'react'
+import { Flip, gsap, useGSAP } from '@/lib/gsap'
+import { usePrefersReducedMotion } from '@/hooks/useReducedMotion'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { SectionHeading } from '@/components/ui/SectionHeading'
+import { AUDIENCE_FILTERS, COURSES, type Audience } from '@/data/courses'
+import { CourseCard } from './CourseCard'
+
+export function Courses() {
+  const [filter, setFilter] = useState<Audience | 'todos'>('todos')
+  const gridRef = useRef<HTMLDivElement | null>(null)
+  const flipStateRef = useRef<ReturnType<typeof Flip.getState> | null>(null)
+  const reducedMotion = usePrefersReducedMotion()
+  const headingRef = useScrollReveal<HTMLDivElement>({ selector: '[data-reveal]', stagger: 0.08 })
+
+  const visibleCourses = filter === 'todos' ? COURSES : COURSES.filter((c) => c.audience.includes(filter))
+
+  const handleFilter = (id: Audience | 'todos') => {
+    if (id === filter) return
+    if (gridRef.current && !reducedMotion) {
+      flipStateRef.current = Flip.getState(gridRef.current.querySelectorAll('[data-course-card]'))
+    }
+    setFilter(id)
+  }
+
+  useGSAP(
+    () => {
+      if (!flipStateRef.current) return
+      Flip.from(flipStateRef.current, {
+        duration: 0.65,
+        ease: 'power3.inOut',
+        stagger: 0.03,
+        absolute: true,
+        onEnter: (els) => gsap.fromTo(els, { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.5, stagger: 0.04 }),
+        onLeave: (els) => gsap.to(els, { opacity: 0, scale: 0.92, duration: 0.25 }),
+      })
+      flipStateRef.current = null
+    },
+    { dependencies: [filter] },
+  )
+
+  return (
+    <section id="cursos" className="relative bg-navy-950 py-28 sm:py-36">
+      <div className="mx-auto max-w-7xl px-6 sm:px-10">
+        <div ref={headingRef} className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+          <div data-reveal>
+            <SectionHeading
+              eyebrow="Nossos cursos"
+              title={
+                <>
+                  Um curso para cada <span className="text-gradient-gold">momento da vida.</span>
+                </>
+              }
+              description="Seis trilhas pensadas para idades e objetivos diferentes — da primeira infância à terceira idade."
+            />
+          </div>
+        </div>
+
+        <div data-reveal className="mt-10 flex flex-wrap gap-2.5">
+          {AUDIENCE_FILTERS.map((f) => (
+            <button
+              key={f.id}
+              onClick={() => handleFilter(f.id)}
+              className={`rounded-full border px-4 py-2 font-subtitle text-sm font-medium transition-colors duration-300 ${
+                filter === f.id
+                  ? 'border-gold-400 bg-gold-400 text-navy-950'
+                  : 'border-white/15 text-mist-300 hover:border-white/35 hover:text-white'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+        <div ref={gridRef} className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {visibleCourses.map((course) => (
+            <CourseCard key={course.id} course={course} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
