@@ -94,7 +94,7 @@ export function Hero() {
         ref={contentRef}
         className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-24 pt-36 sm:px-10 sm:pt-40"
       >
-        <div className="max-w-3xl">
+        <div className="max-w-3xl lg:-translate-x-8 xl:-translate-x-16">
           <div
             data-hero-fade
             className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 font-subtitle text-xs font-semibold uppercase tracking-[0.25em] text-gold-300"

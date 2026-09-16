@@ -20,8 +20,9 @@ export const SITE = {
   url: 'https://www.sefti.com.br',
   city: 'Duque de Caxias',
   state: 'RJ',
-  instagramHandle: '@sefti.oficial',
-  instagramUrl: 'https://instagram.com/sefti.oficial',
+  cnpj: '67.740.189/0001-20',
+  instagramHandle: '@seftioficial',
+  instagramUrl: 'https://instagram.com/seftioficial',
 }
 
 export const NAV_LINKS = [

@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react'
 import type { RefObject } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { buildNetworkGeometry } from './networkGeometry'
 
@@ -12,6 +12,8 @@ interface NetworkSphereProps {
 export function NetworkSphere({ pointer, scrollProgress }: NetworkSphereProps) {
   const groupRef = useRef<THREE.Group>(null)
   const coreRef = useRef<THREE.Mesh>(null)
+  // Offset toward the right side of the frame, away from the headline text.
+  const offsetX = useThree((state) => state.viewport.width * 0.16)
 
   const { nodePositions, edgePositions } = useMemo(() => buildNetworkGeometry(48, 1.75, 3), [])
 
@@ -46,7 +48,7 @@ export function NetworkSphere({ pointer, scrollProgress }: NetworkSphereProps) {
   })
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} position={[offsetX, 0, 0]}>
       <lineSegments geometry={edgesGeometry}>
         <lineBasicMaterial color="#5b7fc4" transparent opacity={0.4} />
       </lineSegments>

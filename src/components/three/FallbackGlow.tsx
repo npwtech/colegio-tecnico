@@ -3,7 +3,7 @@
  * language (navy depth + gold nodes) without any WebGL or heavy JS cost. */
 export function FallbackGlow() {
   return (
-    <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+    <div className="absolute inset-0 flex items-center justify-center sm:justify-end sm:pr-[6vw]" aria-hidden="true">
       <div className="relative size-[70vmin] max-w-[560px]">
         <div
           className="absolute inset-0 rounded-full opacity-70 blur-3xl"

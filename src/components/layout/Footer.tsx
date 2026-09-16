@@ -32,7 +32,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center gap-4 border-t border-white/10 pt-8 sm:flex-row sm:justify-between">
           <p className="font-sans text-xs text-mist-500">
-            © {year} {SITE.name}. Todos os direitos reservados.
+            © {year} {SITE.name}. Todos os direitos reservados. CNPJ {SITE.cnpj}
           </p>
           <a
             href={SITE.instagramUrl}
