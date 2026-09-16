@@ -40,7 +40,8 @@ export function Courses() {
   )
 
   return (
-    <section id="cursos" className="relative bg-navy-950 py-28 sm:py-36">
+    <section id="cursos" className="relative overflow-hidden bg-navy-950 py-28 sm:py-36">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-navy-900 to-transparent sm:h-44 lg:h-56" />
       <div className="mx-auto max-w-7xl px-6 sm:px-10">
         <div ref={headingRef} className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div data-reveal>

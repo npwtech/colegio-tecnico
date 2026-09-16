@@ -9,6 +9,7 @@ export function Contact() {
 
   return (
     <section id="contato" className="relative overflow-hidden bg-navy-950 py-28 sm:py-36">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-navy-900 to-transparent sm:h-44 lg:h-56" />
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 size-[70vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-navy-600/40 blur-[140px]" />
       </div>

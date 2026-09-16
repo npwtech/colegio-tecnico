@@ -80,6 +80,7 @@ export function Structure() {
       ref={sectionRef}
       className="relative overflow-hidden bg-navy-900 py-28 sm:py-36 lg:flex lg:h-screen lg:flex-col lg:py-0"
     >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-navy-950 to-transparent sm:h-44 lg:h-56" />
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.35]" />
 
       <div ref={headingRef} className="relative mx-auto w-full max-w-7xl px-6 sm:px-10 lg:pt-28">

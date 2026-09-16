@@ -41,6 +41,7 @@ export function About() {
 
   return (
     <section id="sobre" className="relative overflow-hidden bg-navy-900 py-28 sm:py-36">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-navy-950 to-transparent sm:h-44 lg:h-56" />
       <div className="pointer-events-none absolute inset-0 bg-dot-grid opacity-[0.15]" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 sm:px-10 lg:grid-cols-[1fr_1fr] lg:gap-10">
         <div data-reveal className="lg:sticky lg:top-32 lg:self-start">
