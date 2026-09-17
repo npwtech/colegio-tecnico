@@ -3,27 +3,29 @@ import { gsap, useGSAP } from '@/lib/gsap'
 import { usePrefersReducedMotion } from '@/hooks/useReducedMotion'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { WebGLImage } from '@/components/three/WebGLImage'
+import { PHOTOS } from '@/data/media'
 
 const STEPS = [
   {
-    title: 'Aula prática desde o primeiro dia',
-    description:
-      'Nada de aula só na teoria: você coloca a mão no computador, na peça ou no robô já nos primeiros encontros, no laboratório da SEFTI.',
+    title: 'Laboratório completo',
+    description: 'Computadores modernos com SSD e monitores de qualidade — um por aluno, sem revezamento.',
+    photo: PHOTOS.labKids,
   },
   {
-    title: 'Acompanhamento em turma reduzida',
-    description:
-      'Turmas pequenas para que o professor consiga acompanhar o ritmo de cada aluno de perto, sem deixar dúvida para trás.',
+    title: 'Salas climatizadas',
+    description: 'Ambientes com ar-condicionado para estudar com conforto em qualquer época do ano.',
+    photo: PHOTOS.classroom,
   },
   {
-    title: 'Apostila própria como guia',
-    description:
-      'Material desenvolvido pela própria SEFTI, organizado passo a passo para acompanhar a evolução do curso do início ao fim.',
+    title: 'Segurança monitorada',
+    description: 'Circuito completo de câmeras internas e externas, para a tranquilidade das famílias.',
+    photo: PHOTOS.security,
   },
   {
-    title: 'Preparado para o que vem depois',
-    description:
-      'Ao final, você sai com conhecimento aplicável de verdade — pronto para o mercado, para o dia a dia ou para o próximo curso.',
+    title: 'Bancada de montagem',
+    description: 'Sala dedicada, com equipamentos reais, para as aulas práticas de montagem e manutenção.',
+    photo: PHOTOS.workbenchSolder,
   },
 ]
 
@@ -87,8 +89,8 @@ export function Structure() {
         <div data-reveal className="max-w-2xl">
           <SectionHeading
             eyebrow="Estrutura"
-            title="Uma metodologia que evolui com você."
-            description="Da primeira aula ao último projeto, a experiência na SEFTI foi desenhada como uma jornada — não como uma lista de conteúdos soltos."
+            title="Estrutura preparada para você aprender de verdade."
+            description="Investimos em cada detalhe para oferecer a melhor experiência de aprendizado da região."
           />
         </div>
       </div>
@@ -102,13 +104,16 @@ export function Structure() {
             <div
               key={step.title}
               data-reveal
-              className={`relative flex shrink-0 flex-col justify-center rounded-3xl border p-9 transition-colors duration-500 sm:p-10 lg:h-[62%] lg:w-[min(78vw,32rem)] ${
+              className={`relative flex shrink-0 flex-col overflow-hidden rounded-3xl border p-6 transition-colors duration-500 sm:p-7 lg:min-h-[62%] lg:w-[min(78vw,32rem)] ${
                 activeStep === i ? 'border-gold-400/50 bg-white/[0.06]' : 'border-white/10 bg-white/[0.03]'
               }`}
             >
-              <span className="font-display text-5xl font-extrabold text-white/10 sm:text-6xl">
-                0{i + 1}
-              </span>
+              <div className="relative aspect-[16/10] shrink-0 overflow-hidden rounded-2xl">
+                <WebGLImage src={step.photo.src} alt={step.photo.alt} className="size-full" />
+                <span className="absolute left-3 top-3 rounded-full bg-navy-950/70 px-3 py-1 font-display text-sm font-extrabold text-gold-400 backdrop-blur-sm">
+                  0{i + 1}
+                </span>
+              </div>
               <h3 className="mt-6 font-display text-2xl font-bold leading-snug text-white sm:text-3xl">
                 {step.title}
               </h3>

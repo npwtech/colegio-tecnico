@@ -1,6 +1,7 @@
 import { useMemo, useRef } from 'react'
 import type { RefObject } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
+import { Html } from '@react-three/drei'
 import * as THREE from 'three'
 import { buildNetworkGeometry } from './networkGeometry'
 
@@ -73,6 +74,16 @@ export function NetworkSphere({ pointer, scrollProgress }: NetworkSphereProps) {
         <sphereGeometry args={[0.32, 32, 32]} />
         <meshStandardMaterial color="#ffe066" emissive="#ffd100" emissiveIntensity={1.4} roughness={0.4} />
       </mesh>
+
+      {/* SEFTI mark: the "S" pinned dead-center on the glowing core sphere. */}
+      <Html center occlude={false} style={{ pointerEvents: 'none' }}>
+        <span
+          className="select-none font-display font-extrabold text-navy-950"
+          style={{ fontSize: 'clamp(18px, 3vw, 30px)', lineHeight: 1 }}
+        >
+          S
+        </span>
+      </Html>
     </group>
   )
 }

@@ -19,8 +19,8 @@ export function Contact() {
           <SectionHeading
             align="center"
             eyebrow="Matricule-se"
-            title="Pronto para dar o próximo passo com a tecnologia?"
-            description="Fale agora pelo WhatsApp e descubra o curso certo para o seu momento — ou o da sua família."
+            title="Fale com a SEFTI."
+            description="Tire suas dúvidas, agende uma visita ou garanta a sua vaga. Atendimento rápido e sem compromisso."
             className="mx-auto"
           />
         </div>
@@ -38,7 +38,7 @@ export function Contact() {
             <div>
               <p className="font-subtitle text-xs font-semibold uppercase tracking-[0.2em] text-mist-500">Endereço</p>
               <p className="mt-1 font-sans text-sm text-mist-100">
-                {SITE.city}, {SITE.state}
+                {SITE.neighborhood}, {SITE.city} – {SITE.state}
               </p>
             </div>
           </div>

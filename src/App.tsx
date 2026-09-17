@@ -9,6 +9,7 @@ import { Hero } from '@/components/sections/Hero'
 import { About } from '@/components/sections/About'
 import { Courses } from '@/components/sections/Courses'
 import { Structure } from '@/components/sections/Structure'
+import { SchoolGallery } from '@/components/sections/SchoolGallery'
 import { Contact } from '@/components/sections/Contact'
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <About />
         <Courses />
         <Structure />
+        <SchoolGallery />
         <Contact />
       </main>
       <Footer />

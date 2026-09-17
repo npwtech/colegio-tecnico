@@ -1,18 +1,21 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Button } from '@/components/ui/Button'
+import { WebGLImage } from '@/components/three/WebGLImage'
+import { PHOTOS } from '@/data/media'
 import { scrollToSection } from '@/lib/scroll'
 
 const DIFFERENTIATORS = [
   {
     index: '01',
     title: 'Professores experientes',
-    description: 'Um corpo docente que domina o conteúdo e sabe ensinar no ritmo de cada turma.',
+    description:
+      'Direção e corpo docente formados por professores atuantes em escolas de ensino fundamental e médio da região.',
   },
   {
     index: '02',
     title: 'Apostilas próprias',
-    description: 'Material didático desenvolvido pela própria SEFTI, direto ao ponto e fácil de acompanhar.',
+    description: 'Apostilas exclusivas, desenvolvidas pela própria SEFTI, direto ao ponto e fácil de acompanhar.',
   },
   {
     index: '03',
@@ -47,13 +50,17 @@ export function About() {
         <div data-reveal className="lg:sticky lg:top-32 lg:self-start">
           <SectionHeading
             eyebrow="Sobre a SEFTI"
-            title="Uma escola pensada para todas as gerações."
-            description="A SEFTI — Sistema Educacional Focado em Tecnologia e Inovação — nasce da ideia de que tecnologia não tem idade certa para ser aprendida. Ensinamos informática, robótica e manutenção de computadores com uma didática próxima, prática e acessível, para que crianças, adolescentes, jovens, adultos e a terceira idade cheguem mais preparados para o futuro."
+            title="Uma escola feita por professor, para a nossa comunidade."
+            description="A SEFTI nasceu do sonho de um professor com anos de sala de aula em colégios da região: levar ensino de tecnologia de qualidade para Jardim Primavera, sem que ninguém precise atravessar a cidade para aprender."
           />
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <Button variant="outline" onClick={() => scrollToSection('#contato')}>
-              Fale com a SEFTI
+              Agendar uma visita
             </Button>
+          </div>
+
+          <div className="relative mt-10 hidden aspect-[4/5] max-w-sm overflow-hidden rounded-3xl border border-white/10 lg:block">
+            <WebGLImage src={PHOTOS.studentsComputers.src} alt={PHOTOS.studentsComputers.alt} className="size-full" />
           </div>
         </div>
 

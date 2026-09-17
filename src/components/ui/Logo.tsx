@@ -11,8 +11,11 @@ export function Logo({ className = '', markSize = 40, showTagline = false }: Log
     <img
       src="/images/sefti_logo.png"
       alt="SEFTI — Cursos de Tecnologia e Inovação"
-      className={`w-auto shrink-0 object-contain ${className}`}
-      style={{ height: showTagline ? markSize * 1.9 : markSize }}
+      className={`w-auto shrink-0 object-contain transition-[height] duration-500 ${className}`}
+      style={{
+        height: showTagline ? markSize * 1.9 : markSize,
+        transitionTimingFunction: 'var(--ease-in-out-quart)',
+      }}
     />
   )
 }

@@ -23,6 +23,18 @@ export function FallbackGlow() {
             return <circle key={i} cx={x} cy={y} r="2.6" fill="#ffd100" />
           })}
           <circle cx="100" cy="100" r="12" fill="#ffe066" opacity="0.9" />
+          <text
+            x="100"
+            y="100"
+            textAnchor="middle"
+            dominantBaseline="central"
+            fontFamily="var(--font-display)"
+            fontWeight="800"
+            fontSize="13"
+            fill="#0b2d63"
+          >
+            S
+          </text>
         </svg>
       </div>
     </div>

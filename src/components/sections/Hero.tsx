@@ -10,7 +10,7 @@ import { WhatsAppButton } from '@/components/ui/WhatsAppButton'
 
 const HeroCanvas = lazy(() => import('@/components/three/HeroCanvas').then((m) => ({ default: m.HeroCanvas })))
 
-const TRUST_ITEMS = ['Professores experientes', 'Turmas reduzidas', 'Aulas práticas']
+const TRUST_ITEMS = ['Professores experientes', 'Turmas reduzidas', 'Aulas 100% práticas']
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement | null>(null)
@@ -100,29 +100,31 @@ export function Hero() {
             className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 font-subtitle text-xs font-semibold uppercase tracking-[0.25em] text-gold-300"
           >
             <span className="size-1.5 rounded-full bg-gold-400" />
-            Escola de tecnologia e inovação
+            Matrículas abertas — turmas de inauguração com vagas limitadas
           </div>
 
           <h1 className="font-display text-[clamp(2.6rem,9vw,6rem)] font-extrabold leading-[0.98] text-white">
             <span ref={line1Ref} className="block">
-              Tecnologia para todas as
+              Tecnologia na prática,
             </span>
             <span className="block overflow-hidden pb-2">
               <span ref={line2Ref} className="text-gradient-gold inline-block">
-                gerações.
+                para todas as idades.
               </span>
             </span>
           </h1>
 
           <p data-hero-fade className="mt-7 max-w-xl font-sans text-base leading-relaxed text-mist-300 sm:text-lg">
-            Conhecimento que transforma. Tecnologia que prepara. Futuro que começa agora.
+            Informática, robótica e montagem de computadores com aulas práticas, turmas reduzidas e professores
+            experientes, no coração de Jardim Primavera. Da criança que monta o primeiro robô ao vovô que quer
+            dominar o celular.
           </p>
 
           <div data-hero-fade className="mt-10 flex flex-wrap items-center gap-4">
+            <WhatsAppButton label="Falar no WhatsApp" />
             <Button onClick={() => scrollToSection('#cursos')} variant="primary">
-              Conheça os cursos
+              Ver os cursos
             </Button>
-            <WhatsAppButton label="Fale no WhatsApp" />
           </div>
 
           <ul data-hero-fade className="mt-12 flex flex-wrap gap-x-8 gap-y-3">

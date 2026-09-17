@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Flip, gsap, useGSAP } from '@/lib/gsap'
 import { usePrefersReducedMotion } from '@/hooks/useReducedMotion'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
@@ -8,6 +8,7 @@ import { CourseCard } from './CourseCard'
 
 export function Courses() {
   const [filter, setFilter] = useState<Audience | 'todos'>('todos')
+  const [openCourseId, setOpenCourseId] = useState<string | null>(null)
   const gridRef = useRef<HTMLDivElement | null>(null)
   const flipStateRef = useRef<ReturnType<typeof Flip.getState> | null>(null)
   const reducedMotion = usePrefersReducedMotion()
@@ -17,6 +18,7 @@ export function Courses() {
 
   const handleFilter = (id: Audience | 'todos') => {
     if (id === filter) return
+    setOpenCourseId(null)
     if (gridRef.current && !reducedMotion) {
       flipStateRef.current = Flip.getState(gridRef.current.querySelectorAll('[data-course-card]'))
     }
@@ -39,8 +41,28 @@ export function Courses() {
     { dependencies: [filter] },
   )
 
+  // Locks scroll (and Lenis) while a course's detail panel is open, and lets
+  // Escape close it like any modal.
+  useEffect(() => {
+    if (!openCourseId) return
+
+    document.body.style.overflow = 'hidden'
+    window.__lenis?.stop()
+
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpenCourseId(null)
+    }
+    window.addEventListener('keydown', handleKey)
+
+    return () => {
+      document.body.style.overflow = ''
+      window.__lenis?.start()
+      window.removeEventListener('keydown', handleKey)
+    }
+  }, [openCourseId])
+
   return (
-    <section id="cursos" className="relative overflow-hidden bg-navy-950 py-28 sm:py-36">
+    <section id="cursos" className="relative bg-navy-950 py-28 sm:py-36">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-navy-900 to-transparent sm:h-44 lg:h-56" />
       <div className="mx-auto max-w-7xl px-6 sm:px-10">
         <div ref={headingRef} className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
@@ -75,10 +97,24 @@ export function Courses() {
 
         <div ref={gridRef} className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visibleCourses.map((course) => (
-            <CourseCard key={course.id} course={course} />
+            <CourseCard
+              key={course.id}
+              course={course}
+              isOpen={openCourseId === course.id}
+              onOpen={() => setOpenCourseId(course.id)}
+              onClose={() => setOpenCourseId(null)}
+            />
           ))}
         </div>
       </div>
+
+      {openCourseId && (
+        <div
+          className="fixed inset-0 z-40 bg-navy-950/80 backdrop-blur-sm"
+          onClick={() => setOpenCourseId(null)}
+          aria-hidden="true"
+        />
+      )}
     </section>
   )
 }

@@ -13,7 +13,7 @@ export function Footer() {
           <div className="max-w-sm">
             <Logo markSize={34} showTagline />
             <p className="mt-5 font-sans text-sm leading-relaxed text-mist-500">
-              {SITE.fullName}. Tecnologia e inovação para todas as gerações, em {SITE.city}, {SITE.state}.
+              {SITE.name} — {SITE.fullName}. Formando os talentos digitais de {SITE.city}.
             </p>
           </div>
 

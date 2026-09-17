@@ -153,7 +153,7 @@ export function Header() {
             }}
             aria-label="SEFTI — início"
           >
-            <Logo markSize={32} />
+            <Logo markSize={scrolled ? 32 : 76} />
           </a>
 
           <nav className="relative hidden items-center gap-1 lg:flex">

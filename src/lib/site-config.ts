@@ -18,6 +18,7 @@ export const SITE = {
   fullName: 'Sistema Educacional Focado em Tecnologia e Inovação',
   tagline: 'Tecnologia para todas as gerações',
   url: 'https://www.sefti.com.br',
+  neighborhood: 'Jardim Primavera',
   city: 'Duque de Caxias',
   state: 'RJ',
   cnpj: '67.740.189/0001-20',
@@ -28,7 +29,8 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: 'Início', href: '#inicio' },
   { label: 'Cursos', href: '#cursos' },
-  { label: 'Sobre a SEFTI', href: '#sobre' },
+  { label: 'A escola', href: '#sobre' },
   { label: 'Estrutura', href: '#estrutura' },
+  { label: 'Fotos', href: '#conheca' },
   { label: 'Contato', href: '#contato' },
 ] as const
