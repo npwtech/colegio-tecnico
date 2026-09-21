@@ -25,7 +25,7 @@ export function EnrollmentSteps() {
   const scopeRef = useScrollReveal<HTMLDivElement>({ selector: '[data-reveal]', stagger: 0.08 })
 
   return (
-    <section className="relative overflow-hidden bg-navy-900 py-28 sm:py-36">
+    <section id="passos" className="relative overflow-hidden bg-navy-900 py-28 sm:py-36">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-navy-950 to-transparent sm:h-44 lg:h-56" />
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.35]" />
 

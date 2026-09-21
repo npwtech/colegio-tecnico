@@ -158,7 +158,7 @@ export function Header() {
             <Logo markSize={scrolled ? 30 : 60} />
           </a>
 
-          <nav className="relative hidden items-center gap-1 lg:flex">
+          <nav className="relative hidden items-center gap-0.5 xl:flex">
             <span ref={indicatorRef} className="absolute inset-y-0 left-0 -z-10 w-0 rounded-full bg-gold-400" />
             {NAV_LINKS.map((link) => (
               <button
@@ -169,7 +169,7 @@ export function Header() {
                 data-header-item
                 data-cursor-hover
                 onClick={() => handleNav(link.href)}
-                className={`rounded-full px-4 py-2 font-subtitle text-sm font-medium transition-colors duration-300 ${
+                className={`whitespace-nowrap rounded-full px-3 py-2 font-subtitle text-sm font-medium transition-colors duration-300 ${
                   activeId === link.href ? 'text-navy-950' : 'text-white/80 hover:text-white'
                 }`}
               >
@@ -185,7 +185,7 @@ export function Header() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? 'Fechar menu' : 'Abrir menu'}
               aria-expanded={open}
-              className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white lg:hidden"
+              className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white xl:hidden"
             >
               {open ? <CloseIcon className="size-4.5" /> : <MenuIcon className="size-4.5" />}
             </button>
@@ -197,27 +197,27 @@ export function Header() {
       <div
         ref={panelRef}
         style={{ clipPath: 'circle(0% at calc(100% - 44px) 44px)' }}
-        className={`noise-overlay fixed inset-0 z-40 flex flex-col justify-between bg-navy-950 bg-grid px-8 pb-10 pt-28 lg:hidden ${
+        className={`noise-overlay fixed inset-0 z-40 flex flex-col overflow-y-auto bg-navy-950 bg-grid px-8 pb-8 pt-24 xl:hidden ${
           open ? '' : 'pointer-events-none'
         }`}
         aria-hidden={!open}
       >
-        <nav className="flex flex-col gap-1">
+        <nav className="flex flex-1 flex-col justify-center gap-0.5 py-4">
           {NAV_LINKS.map((link, i) => (
             <div key={link.href} className="overflow-hidden">
               <button
                 data-mobile-link
                 onClick={() => handleNav(link.href)}
-                className="flex w-full items-center gap-4 py-3 text-left font-display text-4xl font-extrabold text-white active:text-gold-300"
+                className="flex w-full items-center gap-3 py-2 text-left font-display text-2xl font-extrabold text-white active:text-gold-300 sm:text-3xl"
               >
-                <span className="font-subtitle text-sm font-medium text-gold-400">0{i + 1}</span>
+                <span className="font-subtitle text-xs font-medium text-gold-400 sm:text-sm">0{i + 1}</span>
                 {link.label}
               </button>
             </div>
           ))}
         </nav>
 
-        <div data-mobile-extra className="flex items-center justify-between border-t border-white/10 pt-6">
+        <div data-mobile-extra className="flex shrink-0 items-center justify-between border-t border-white/10 pt-6">
           <WhatsAppButton label="Fale no WhatsApp" />
           <a
             href={SITE.instagramUrl}

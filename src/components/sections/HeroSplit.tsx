@@ -100,7 +100,7 @@ export function HeroSplit() {
         <img
           src={PHOTOS.heroKidRobotics.src}
           alt={PHOTOS.heroKidRobotics.alt}
-          className="size-full object-cover object-[4%_16%] lg:object-[0%_20%]"
+          className="size-full object-cover object-[14%_16%] lg:object-[0%_20%]"
         />
         {/* Long, gradual dissolve reaching almost up to the boy himself. */}
         <div className="hero-photo-fade-x absolute inset-0" />

@@ -28,5 +28,7 @@ export const NAV_LINKS = [
   { label: 'A escola', href: '#sobre' },
   { label: 'Estrutura', href: '#estrutura' },
   { label: 'Fotos', href: '#conheca' },
+  { label: 'Passos', href: '#passos' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Contato', href: '#contato' },
 ] as const
