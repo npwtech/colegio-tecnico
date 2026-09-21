@@ -6,11 +6,19 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { AUDIENCE_FILTERS, COURSES, type Audience } from '@/data/courses'
 import { CourseCard } from './CourseCard'
 
+// Matches CourseCard's Flip close duration (0.6s), plus a small buffer, so
+// the backdrop only lifts once the card has actually finished shrinking back
+// into the grid — otherwise the dim/blur clears while the card is still
+// mid-shrink and briefly flashes the neighboring cards at full brightness.
+const CLOSE_ANIMATION_MS = 650
+
 export function Courses() {
   const [filter, setFilter] = useState<Audience | 'todos'>('todos')
   const [openCourseId, setOpenCourseId] = useState<string | null>(null)
+  const [closingCourseId, setClosingCourseId] = useState<string | null>(null)
   const gridRef = useRef<HTMLDivElement | null>(null)
   const flipStateRef = useRef<ReturnType<typeof Flip.getState> | null>(null)
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const reducedMotion = usePrefersReducedMotion()
   const headingRef = useScrollReveal<HTMLDivElement>({ selector: '[data-reveal]', stagger: 0.08 })
 
@@ -24,6 +32,19 @@ export function Courses() {
     }
     setFilter(id)
   }
+
+  const handleCloseCourse = () => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current)
+    if (openCourseId && !reducedMotion) {
+      setClosingCourseId(openCourseId)
+      closeTimeoutRef.current = setTimeout(() => setClosingCourseId(null), CLOSE_ANIMATION_MS)
+    }
+    setOpenCourseId(null)
+  }
+
+  useEffect(() => () => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current)
+  }, [])
 
   useGSAP(
     () => {
@@ -50,7 +71,7 @@ export function Courses() {
     window.__lenis?.stop()
 
     const handleKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpenCourseId(null)
+      if (event.key === 'Escape') handleCloseCourse()
     }
     window.addEventListener('keydown', handleKey)
 
@@ -102,19 +123,19 @@ export function Courses() {
               course={course}
               isOpen={openCourseId === course.id}
               onOpen={() => setOpenCourseId(course.id)}
-              onClose={() => setOpenCourseId(null)}
+              onClose={handleCloseCourse}
             />
           ))}
         </div>
       </div>
 
-      {openCourseId && (
-        <div
-          className="fixed inset-0 z-40 bg-navy-950/80 backdrop-blur-sm"
-          onClick={() => setOpenCourseId(null)}
-          aria-hidden="true"
-        />
-      )}
+      <div
+        className={`fixed inset-0 z-40 bg-navy-950/80 backdrop-blur-sm transition-opacity duration-200 ${
+          openCourseId || closingCourseId ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        onClick={handleCloseCourse}
+        aria-hidden="true"
+      />
     </section>
   )
 }

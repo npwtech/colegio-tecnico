@@ -24,6 +24,10 @@ export const PHOTOS = {
   seniorLaptop: { src: pexels(7983559), alt: 'Pessoas da terceira idade sentadas com notebooks em sala de aula' },
   seniorPhone: { src: pexels(7331674), alt: 'Senhora usando um smartphone' },
   seniorPhone2: { src: pexels(7544864), alt: 'Idosa sorrindo enquanto usa um smartphone' },
+  heroKidRobotics: {
+    src: pexels(7868829, 1800),
+    alt: 'Menino sorrindo enquanto segura um projeto de robótica feito por ele',
+  },
 } as const
 
 export type PhotoKey = keyof typeof PHOTOS

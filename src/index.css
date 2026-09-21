@@ -146,6 +146,61 @@
   .mask-fade-b {
     mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
+
+  /* Eased dissolve for the hero photo — several close stops approximating a
+     smoothstep curve, instead of one hard via-stop. A single sharp change in
+     slope reads as a visible seam ("banding"); many small ones don't. */
+  .hero-photo-fade-x {
+    background: linear-gradient(
+      to right,
+      rgba(4, 7, 15, 1) 0%,
+      rgba(4, 7, 15, 0.86) 12%,
+      rgba(4, 7, 15, 0.56) 26%,
+      rgba(4, 7, 15, 0.22) 40%,
+      rgba(4, 7, 15, 0) 55%
+    );
+  }
+  @media (min-width: 1024px) {
+    .hero-photo-fade-x {
+      background: linear-gradient(
+        to right,
+        rgba(4, 7, 15, 1) 0%,
+        rgba(4, 7, 15, 0.8) 9%,
+        rgba(4, 7, 15, 0.5) 20%,
+        rgba(4, 7, 15, 0.18) 32%,
+        rgba(4, 7, 15, 0) 45%
+      );
+    }
+  }
+
+  /* On mobile the headline sits directly over the photo (no side panel to
+     stand on), so this adds a soft, gradual pool of shade right behind that
+     text band instead of leaving that whole middle stretch untouched. */
+  .hero-photo-fade-y {
+    background: linear-gradient(
+      to top,
+      rgba(4, 7, 15, 1) 0%,
+      rgba(4, 7, 15, 0.4) 14%,
+      rgba(4, 7, 15, 0) 24%,
+      rgba(4, 7, 15, 0) 44%,
+      rgba(4, 7, 15, 0.3) 55%,
+      rgba(4, 7, 15, 0.3) 72%,
+      rgba(4, 7, 15, 0.08) 88%,
+      rgba(4, 7, 15, 0.22) 100%
+    );
+  }
+  @media (min-width: 1024px) {
+    .hero-photo-fade-y {
+      background: linear-gradient(
+        to top,
+        rgba(4, 7, 15, 1) 0%,
+        rgba(4, 7, 15, 0.4) 14%,
+        rgba(4, 7, 15, 0) 24%,
+        rgba(4, 7, 15, 0) 76%,
+        rgba(4, 7, 15, 0.28) 100%
+      );
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

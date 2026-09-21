@@ -101,7 +101,9 @@ export function Header() {
         .from('[data-mobile-extra]', { opacity: 0, y: 16, duration: 0.5 }, '-=0.3')
       menuTlRef.current = tl
     },
-    { scope: rootRef },
+    // The mobile panel is a sibling of <header>, not a child of it, so the
+    // selector-based targets above only resolve when scoped to panelRef.
+    { scope: panelRef },
   )
 
   useEffect(() => {
@@ -139,7 +141,7 @@ export function Header() {
         style={{ transitionTimingFunction: 'var(--ease-in-out-quart)' }}
       >
         <div
-          className={`mx-3 mt-3 flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-500 sm:mx-6 sm:mt-4 sm:px-5 ${
+          className={`mx-3 mt-3 flex items-center justify-between rounded-2xl px-5 py-4 transition-all duration-500 sm:mx-6 sm:mt-4 sm:px-6 ${
             scrolled ? 'glass-panel shadow-[0_10px_40px_-15px_rgba(0,0,0,0.65)]' : 'border border-transparent'
           }`}
         >
@@ -153,7 +155,7 @@ export function Header() {
             }}
             aria-label="SEFTI — início"
           >
-            <Logo markSize={scrolled ? 32 : 76} />
+            <Logo markSize={scrolled ? 30 : 60} />
           </a>
 
           <nav className="relative hidden items-center gap-1 lg:flex">
@@ -177,9 +179,6 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <div data-header-item className="hidden sm:block">
-              <WhatsAppButton compact label="WhatsApp" />
-            </div>
             <button
               data-header-item
               data-cursor-hover

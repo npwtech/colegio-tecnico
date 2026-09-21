@@ -1,6 +1,6 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { WebGLImage } from '@/components/three/WebGLImage'
+import { TiltImage } from '@/components/ui/TiltImage'
 import { PHOTOS } from '@/data/media'
 
 const TILES = [
@@ -35,7 +35,7 @@ export function SchoolGallery() {
         >
           {TILES.map(({ photo, span }) => (
             <div key={photo.alt} data-reveal className={`h-48 sm:h-56 lg:h-auto lg:min-h-[220px] ${span}`}>
-              <WebGLImage src={photo.src} alt={photo.alt} className="size-full rounded-2xl" />
+              <TiltImage src={photo.src} alt={photo.alt} className="size-full rounded-2xl" />
             </div>
           ))}
         </div>

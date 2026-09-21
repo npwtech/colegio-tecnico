@@ -3,7 +3,7 @@ import { gsap, useGSAP } from '@/lib/gsap'
 import { usePrefersReducedMotion } from '@/hooks/useReducedMotion'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { WebGLImage } from '@/components/three/WebGLImage'
+import { TiltImage } from '@/components/ui/TiltImage'
 import { PHOTOS } from '@/data/media'
 
 const STEPS = [
@@ -48,6 +48,11 @@ export function Structure() {
         if (!track || !container) return
 
         const getDistance = () => Math.max(0, track.scrollWidth - container.clientWidth)
+        // Cards are compact (max 32rem), so their raw excess width is only a few
+        // hundred pixels — nowhere near enough scroll runway to feel "locked." Scale
+        // the pinned scroll length up so the horizontal pass takes a deliberate amount
+        // of scrolling before releasing, independent of how wide the cards happen to be.
+        const getScrollLength = () => Math.max(getDistance() * 2.6, window.innerHeight * 1.2)
 
         const tween = gsap.to(track, {
           x: () => -getDistance(),
@@ -55,7 +60,7 @@ export function Structure() {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top top',
-            end: () => `+=${getDistance()}`,
+            end: () => `+=${getScrollLength()}`,
             scrub: 0.6,
             pin: true,
             invalidateOnRefresh: true,
@@ -109,7 +114,7 @@ export function Structure() {
               }`}
             >
               <div className="relative aspect-[16/10] shrink-0 overflow-hidden rounded-2xl">
-                <WebGLImage src={step.photo.src} alt={step.photo.alt} className="size-full" />
+                <TiltImage src={step.photo.src} alt={step.photo.alt} className="size-full" />
                 <span className="absolute left-3 top-3 rounded-full bg-navy-950/70 px-3 py-1 font-display text-sm font-extrabold text-gold-400 backdrop-blur-sm">
                   0{i + 1}
                 </span>

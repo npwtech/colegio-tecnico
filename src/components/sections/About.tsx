@@ -1,7 +1,7 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Button } from '@/components/ui/Button'
-import { WebGLImage } from '@/components/three/WebGLImage'
+import { TiltImage } from '@/components/ui/TiltImage'
 import { PHOTOS } from '@/data/media'
 import { scrollToSection } from '@/lib/scroll'
 
@@ -60,7 +60,7 @@ export function About() {
           </div>
 
           <div className="relative mt-10 hidden aspect-[4/5] max-w-sm overflow-hidden rounded-3xl border border-white/10 lg:block">
-            <WebGLImage src={PHOTOS.studentsComputers.src} alt={PHOTOS.studentsComputers.alt} className="size-full" />
+            <TiltImage src={PHOTOS.studentsComputers.src} alt={PHOTOS.studentsComputers.alt} className="size-full" />
           </div>
         </div>
 
