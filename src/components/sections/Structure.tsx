@@ -100,29 +100,31 @@ export function Structure() {
         </div>
       </div>
 
-      <div ref={containerRef} className="relative mt-12 lg:mt-10 lg:flex-1 lg:overflow-hidden">
+      <div ref={containerRef} className="relative mt-12 lg:mt-6 lg:min-h-0 lg:flex-1 lg:overflow-hidden">
         <div
           ref={trackRef}
-          className="flex flex-col gap-6 px-6 sm:px-10 lg:h-full lg:w-max lg:flex-row lg:items-center lg:gap-8 lg:px-10"
+          className="flex flex-col gap-6 px-6 sm:px-10 lg:h-full lg:w-max lg:flex-row lg:items-center lg:gap-8 lg:px-10 lg:py-4"
         >
           {STEPS.map((step, i) => (
             <div
               key={step.title}
               data-reveal
-              className={`relative flex shrink-0 flex-col overflow-hidden rounded-3xl border p-6 transition-colors duration-500 sm:p-7 lg:min-h-[62%] lg:w-[min(78vw,32rem)] ${
+              className={`relative flex shrink-0 flex-col overflow-hidden rounded-3xl border p-6 transition-colors duration-500 sm:p-7 lg:h-full lg:max-h-[34rem] lg:w-[min(78vw,32rem)] lg:p-6 ${
                 activeStep === i ? 'border-gold-400/50 bg-white/[0.06]' : 'border-white/10 bg-white/[0.03]'
               }`}
             >
-              <div className="relative aspect-[16/10] shrink-0 overflow-hidden rounded-2xl">
+              {/* On desktop the card height is bound to the pinned viewport, so the photo
+                  flexes to fill whatever is left after the text instead of forcing 16:10. */}
+              <div className="relative aspect-[16/10] shrink-0 overflow-hidden rounded-2xl lg:aspect-auto lg:min-h-0 lg:flex-1 lg:shrink">
                 <TiltImage src={step.photo.src} alt={step.photo.alt} className="size-full" />
                 <span className="absolute left-3 top-3 rounded-full bg-navy-950/70 px-3 py-1 font-display text-sm font-extrabold text-gold-400 backdrop-blur-sm">
                   0{i + 1}
                 </span>
               </div>
-              <h3 className="mt-6 font-display text-2xl font-bold leading-snug text-white sm:text-3xl">
+              <h3 className="mt-6 shrink-0 font-display text-2xl font-bold leading-snug text-white sm:text-3xl lg:mt-5 lg:text-2xl">
                 {step.title}
               </h3>
-              <p className="mt-4 font-sans text-sm leading-relaxed text-mist-300 sm:text-base">
+              <p className="mt-4 shrink-0 font-sans text-sm leading-relaxed text-mist-300 sm:text-base lg:mt-2 lg:line-clamp-2">
                 {step.description}
               </p>
             </div>
@@ -130,7 +132,7 @@ export function Structure() {
         </div>
       </div>
 
-      <div className="relative hidden items-center justify-center gap-2 pb-10 lg:flex">
+      <div className="relative hidden shrink-0 items-center justify-center gap-2 pb-8 lg:flex">
         {STEPS.map((step, i) => (
           <span
             key={step.title}
